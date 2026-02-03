@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Demo 3D Interactiva</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      color: white;
+      background: #05070f;
+    }
+
+    .ui {
+      position: fixed;
+      top: 14px;
+      left: 14px;
+      z-index: 10;
+      width: 340px;
+      padding: 12px 12px;
+      border-radius: 16px;
+      background: rgba(0,0,0,0.45);
+      border: 1px solid rgba(255,255,255,0.14);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+    }
+
+    .title {
+      font-weight: 750;
+      margin-bottom: 8px;
+      letter-spacing: 0.2px;
+    }
+
+    .row {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin: 8px 0;
+    }
+
+    button {
+      cursor: pointer;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.08);
+      color: white;
+      padding: 8px 10px;
+      border-radius: 12px;
+      transition: 120ms ease;
+    }
+    button:hover { background: rgba(255,255,255,0.14); }
+
+    label {
+      font-size: 13px;
+      opacity: 0.9;
+      width: 120px;
+    }
+
+    input[type="range"] { width: 160px; }
+    input[type="color"] { width: 52px; height: 32px; padding: 0; border: none; background: transparent; }
+
+    .tag {
+      font-size: 12px;
+      opacity: 0.95;
+      padding: 3px 8px;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 999px;
+    }
+
+    .hint {
+      font-size: 12.5px;
+      opacity: 0.85;
+      line-height: 1.35;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="ui">
+    <div class="title">Mundo 3D Interactivo 🕺💡</div>
+
+    <div class="row">
+      <button id="btnPlay">Pausar</button>
+      <button id="btnReset">Reiniciar</button>
+      <span class="tag" id="status">Cargando…</span>
+    </div>
+
+    <div class="row">
+      <label for="speed">Velocidad</label>
+      <input id="speed" type="range" min="0" max="2" step="0.01" value="1" />
+      <span class="tag" id="speedVal">1.00x</span>
+    </div>
+
+    <div class="row">
+      <label for="light">Intensidad de luz</label>
+      <input id="light" type="range" min="0" max="3" step="0.01" value="1.6" />
+      <span class="tag" id="lightVal">1.60</span>
+    </div>
+
+    <div class="row">
+      <label for="picker">Color del personaje</label>
+      <input id="picker" type="color" value="#d9c5a2" />
+    </div>
+
+    <div class="row">
+      <button id="btnAuto">Auto-rotación: DESACTIVADA</button>
+    </div>
+
+    <div class="hint">
+      Interacción:
+      <br>• Haz click en el personaje: pausar/reanudar
+      <br>• Arrastra: rotar cámara
+      <br>• Rueda del ratón: zoom
+    </div>
+  </div>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+      "three/examples/jsm/controls/OrbitControls.js": "https://unpkg.com/three@0.160.0/examples/jsm/controls/OrbitControls.js",
+      "three/examples/jsm/loaders/FBXLoader.js": "https://unpkg.com/three@0.160.0/examples/jsm/loaders/FBXLoader.js"
+    }
+  }
+  </script>
+
+  <script type="module" src="./main.js"></script>
+</body>
+</html>
